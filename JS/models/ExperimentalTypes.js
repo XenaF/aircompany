@@ -1,8 +1,8 @@
 const ExperimentalTypes   = {
-    LIFTING_BODY: 'lifting_body',
-    HYPERSONIC: 'HYPERSONIC',
-    HIGH_ALTITUDE: 'HIGH_ALTITUDE',
+    LIFTING_BODY: 'liftingBody',
+    HYPERSONIC: 'hypersonic',
+    HIGH_ALTITUDE: 'highAltitude',
     VTOL: "VTOL"
 };
 
-module.exports =  ExperimentalTypes ;
+module.exports = ExperimentalTypes ;
