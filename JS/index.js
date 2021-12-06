@@ -6,6 +6,7 @@ const MilitaryType = require('./models/MilitaryType');
 const experimentalPlane = require('./Planes/ExperimentalPlane');
 const ExperimentalTypes = require('./models/ExperimentalTypes');
 const ClassificationLevel = require('./models/ClassificationLevel');
+const { print } = require('./utils');
 
 (function run() {
 
@@ -27,11 +28,13 @@ const ClassificationLevel = require('./models/ClassificationLevel');
         new experimentalPlane("Bell X-14", 277, 482, 500, ExperimentalTypes.highAltitude, ClassificationLevel.Secret),
         new experimentalPlane("Ryan X-13 Vertijet", 560, 307, 500, ExperimentalTypes.VTOL, ClassificationLevel.topSecret)
     ];
-
+   
     let airport = new Airport(planes);
     let militaryAirport = new Airport(airport.getMilitaryPlanes());
     let passengerAirport = new Airport(airport.getPassengerPlanes());
-    console.log(`Military airport sorted by max distance: ${Airport.print(militaryAirport.sortByMaxDistance())}`);
-    console.log(`Passenger airport sorted by max speed: ${Airport.print(passengerAirport.sortByMaxSpeed())}`);
-    console.log(`Plane with max passenger capacity: ${Airport.print(passengerAirport.getPassengerPlaneWithMaxPassengersCapacity())}`);
+    console.log(`Military airport sorted by max distance: ${print(militaryAirport.sortByMaxDistance())}`);
+    console.log(`Passenger airport sorted by max speed: ${print(passengerAirport.sortByMaxSpeed())}`);
+    console.log(`Plane with max passenger capacity: ${print(passengerAirport.getPassengerPlaneWithMaxPassengersCapacity())}`);
+    console.log(`list of military planes with transport type: ${print(militaryAirport.getTransportMilitaryPlanes())}`);
+    console.log(`List of Bomber planes In Military Planes: ${print(militaryAirport.getBomberMilitaryPlanes())}`);
 })();
