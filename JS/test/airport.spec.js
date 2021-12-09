@@ -10,6 +10,7 @@ const ExperimentalTypes = require('../models/ExperimentalTypes');
 const ClassificationLevel = require('../models/ClassificationLevel');
 const airport = require('../index');
 
+
 describe('PlaneList', () => {
     
     let planeWithMaxPassengerCapacity = new PassengerPlane({model:'Boeing-747', maxSpeed: 980, maxFlightDistance: 16100, maxLoadCapacity: 70500, passengersCapacity: 242});

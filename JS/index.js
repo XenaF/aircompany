@@ -37,7 +37,7 @@ const { print } = require('./utils');
     console.log(`Plane with max passenger capacity: ${print(passengerAirport.getPassengerPlaneWithMaxPassengersCapacity())}`);
     console.log(`list of military planes with transport type: ${print(militaryAirport.getTransportMilitaryPlanes())}`);
     console.log(`List of Bomber planes In Military Planes: ${print(militaryAirport.getBomberMilitaryPlanes())}`);
-    
+  
     module.exports = airport;
 })();
 
