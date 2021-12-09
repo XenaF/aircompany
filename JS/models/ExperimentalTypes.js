@@ -1,8 +1,8 @@
 const ExperimentalTypes   = {
-    LIFTING_BODY: 'liftingBody',
-    HYPERSONIC: 'hypersonic',
-    HIGH_ALTITUDE: 'highAltitude',
-    VTOL: "VTOL"
+    LIFTING_BODY: 'LIFTING_BODY',
+    HYPERSONIC: 'HYPERSONIC',
+    HIGH_ALTITUDE: 'HIGH_ALTITUDE',
+    VTOL: "VTOL" // A vertical take-off and landing (VTOL) aircraft
 };
 
 module.exports = ExperimentalTypes ;
