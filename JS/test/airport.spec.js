@@ -8,6 +8,7 @@ const MilitaryType = require('../models/MilitaryType');
 const experimentalPlane = require('../Planes/ExperimentalPlane');
 const ExperimentalTypes = require('../models/ExperimentalTypes');
 const ClassificationLevel = require('../models/ClassificationLevel');
+const { print } = require('./utils');
 
 describe('PlaneList', () => {
 
