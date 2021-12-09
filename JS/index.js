@@ -1,32 +1,32 @@
-const Plane = require('./Planes/Plane');
-const MilitaryPlane = require('./Planes/MilitaryPlane');
-const PassengerPlane = require('./Planes/PassengerPlane');
-const Airport = require('./Airport');
+const { Plane } = require('./Planes/Plane');
+const { MilitaryPlane } = require('./planes/MilitaryPlane');
+const { PassengerPlane } = require('./planes/PassengerPlane');
+const { Airport } = require('./Airport');
 const MilitaryType = require('./models/MilitaryType');
-const experimentalPlane = require('./Planes/ExperimentalPlane');
+const { ExperimentalPlane } = require('./planes/ExperimentalPlane');
 const ExperimentalTypes = require('./models/ExperimentalTypes');
-const ClassificationLevel = require('./models/ClassificationLevel');
+const ClassificationLevel= require('./models/ClassificationLevel');
 const { print } = require('./utils');
 
-(function run() {
+(function createAirport() {
 
     let planes = [
-        new PassengerPlane('Boeing-737', 900, 12000, 60500, 164),
-        new PassengerPlane('Boeing-737-800', 940, 12300, 63870, 192),
-        new PassengerPlane('Boeing-747', 980, 16100, 70500, 242),
-        new PassengerPlane('Airbus A320', 930, 11800, 65500, 188),
-        new PassengerPlane('Airbus A330', 990, 14800, 80500, 222),
-        new PassengerPlane('Embraer 190', 870, 8100, 30800, 64),
-        new PassengerPlane('Sukhoi Superjet 100', 870, 11500, 50500, 140),
-        new PassengerPlane('Bombardier CS300', 920, 11000, 60700, 196),
-        new MilitaryPlane('B-1B Lancer', 1050, 21000, 80000, MilitaryType.BOMBER),
-        new MilitaryPlane('B-2 Spirit', 1030, 22000, 70000, MilitaryType.BOMBER),
-        new MilitaryPlane('B-52 Stratofortress', 1000, 20000, 80000, MilitaryType.BOMBER),
-        new MilitaryPlane('F-15', 1500, 12000, 10000, MilitaryType.FIGHTER),
-        new MilitaryPlane('F-22', 1550, 13000, 11000, MilitaryType.FIGHTER),
-        new MilitaryPlane('C-130 Hercules', 650, 5000, 110000, MilitaryType.TRANSPORT),
-        new experimentalPlane("Bell X-14", 277, 482, 500, ExperimentalTypes.highAltitude, ClassificationLevel.Secret),
-        new experimentalPlane("Ryan X-13 Vertijet", 560, 307, 500, ExperimentalTypes.VTOL, ClassificationLevel.topSecret)
+        new PassengerPlane({model: 'Boeing-737', maxSpeed: 900, maxFlightDistance: 12000, maxLoadCapacity: 60500, passengersCapacity: 164}),
+        new PassengerPlane({model:'Boeing-737-800', maxSpeed: 940, maxFlightDistance: 12300, maxLoadCapacity: 63870, passengersCapacity: 192}),
+        new PassengerPlane({model:'Boeing-747', maxSpeed: 980, maxFlightDistance: 16100, maxLoadCapacity: 70500, passengersCapacity: 242}),
+        new PassengerPlane({model: 'Airbus A320', maxSpeed: 930, maxFlightDistance: 11800, maxLoadCapacity: 65500, passengersCapacity: 188}),
+        new PassengerPlane({model:'Airbus A330', maxSpeed: 990, maxFlightDistance: 14800, maxLoadCapacity: 80500, passengersCapacity: 222}),
+        new PassengerPlane({model: 'Embraer 190', maxSpeed: 870, maxFlightDistance: 8100, maxLoadCapacity: 30800, passengersCapacity: 64}),
+        new PassengerPlane({model: 'Sukhoi Superjet 100', maxSpeed: 870, maxFlightDistance: 11500, maxLoadCapacity: 50500, passengersCapacity: 140}),
+        new PassengerPlane({model: 'Bombardier CS300', maxSpeed: 920, maxFlightDistance: 11000, maxLoadCapacity: 60700, passengersCapacity: 196}),
+        new MilitaryPlane({model: 'B-1B Lancer', maxSpeed: 1050, maxFlightDistance: 21000, maxLoadCapacity: 80000, militaryType: MilitaryType.BOMBER}),
+        new MilitaryPlane({model: 'B-2 Spirit', maxSpeed: 1030, maxFlightDistance: 22000, maxLoadCapacity: 70000, militaryType: MilitaryType.BOMBER}),
+        new MilitaryPlane({model: 'B-52 Stratofortress', maxSpeed: 1000, maxFlightDistance: 20000, maxLoadCapacity: 80000, militaryType: MilitaryType.BOMBER}),
+        new MilitaryPlane({model: 'F-15', maxSpeed: 1500, maxFlightDistance: 12000, maxLoadCapacity: 10000, militaryType: MilitaryType.FIGHTER}),
+        new MilitaryPlane({model: 'F-22', maxSpeed: 1550, maxFlightDistance: 13000, maxLoadCapacity: 11000, militaryType: MilitaryType.FIGHTER}),
+        new MilitaryPlane({model: 'C-130 Hercules', maxSpeed: 650, maxFlightDistance: 5000, maxLoadCapacity: 110000, militaryType: MilitaryType.TRANSPORT}),
+        new ExperimentalPlane({model: "Bell X-14", maxSpeed: 277, maxFlightDistance: 482, maxLoadCapacity: 500, type: ExperimentalTypes.highAltitude, classificationLevel: ClassificationLevel.Secret}),
+        new ExperimentalPlane({model: "Ryan X-13 Vertijet", maxSpeed: 560, maxFlightDistance: 307, maxLoadCapacity: 500, type: ExperimentalTypes.VTOL, classificationLevel: ClassificationLevel.topSecret})
     ];
    
     let airport = new Airport(planes);
@@ -37,4 +37,7 @@ const { print } = require('./utils');
     console.log(`Plane with max passenger capacity: ${print(passengerAirport.getPassengerPlaneWithMaxPassengersCapacity())}`);
     console.log(`list of military planes with transport type: ${print(militaryAirport.getTransportMilitaryPlanes())}`);
     console.log(`List of Bomber planes In Military Planes: ${print(militaryAirport.getBomberMilitaryPlanes())}`);
+  
+    module.exports = airport;
 })();
+

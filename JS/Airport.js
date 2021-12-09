@@ -1,10 +1,11 @@
-const PassengerPlane = require('./Planes/PassengerPlane');
-const MilitaryPlane = require('./Planes/MilitaryPlane');
+const { PassengerPlane } = require('./planes/PassengerPlane');
+const { MilitaryPlane } = require('./planes/MilitaryPlane');
 const MilitaryType = require('./models/MilitaryType');
-const ExperimentalPlane = require('./Planes/ExperimentalPlane');
+const { ExperimentalPlane } = require('./planes/ExperimentalPlane');
 const { print } = require('./utils');
 
 class Airport {
+    
      getPassengerPlanes() {
         var passengerPlaneList = [];
         for (let plane of this.planes) {
@@ -23,13 +24,15 @@ class Airport {
         return militaryPlanesList;
     }
 
+
     getPassengerPlaneWithMaxPassengersCapacity() {
         let passengerPlanes = this.getPassengerPlanes();
-        passengerPlanes.sort((a, b) => (b.getPassengersCapacity() - a.getPassengersCapacity()));
-        return passengerPlanes[0];
+        return passengerPlanes.reduce(function(a, b) {
+         return (a.getPassengersCapacity() > b.getPassengersCapacity() ? a : b);
+        });
     }
 
-    getTransportMilitaryPlanes(){
+    getTransportMilitaryPlanes() {
        let militaryPlanesArray = this.getMilitaryPlanes();
        let transportMilitaryPlanes = militaryPlanesArray.filter(el => el.getMilitaryType() == MilitaryType.TRANSPORT);
        return transportMilitaryPlanes;
@@ -48,8 +51,8 @@ class Airport {
 
     getExperimentalPlanes() {
         let experimentalPlanes = [];
-        this.planes.forEach(plane => {
-            if (plane instanceof experimentalPlanes) {
+        this.planes.forEach((plane) => {
+            if (plane instanceof ExperimentalPlane) {
                 experimentalPlanes.push(plane);
             }
         });
@@ -77,4 +80,4 @@ class Airport {
     }
 }
 
-module.exports = Airport;
+module.exports = { Airport }
