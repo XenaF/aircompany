@@ -2,61 +2,48 @@ const { PassengerPlane } = require('./planes/PassengerPlane');
 const { MilitaryPlane } = require('./planes/MilitaryPlane');
 const MilitaryType = require('./models/MilitaryType');
 const { ExperimentalPlane } = require('./planes/ExperimentalPlane');
-const { print } = require('./utils');
+const { printObjectToString } = require('./utils');
 
 class Airport {
     
      getPassengerPlanes() {
-        var passengerPlaneList = [];
-        for (let plane of this.planes) {
-            if (plane instanceof PassengerPlane) {passengerPlaneList.push(plane);}
-        }
-        return passengerPlaneList;
+        let planesList = this.planes;
+        return planesList.filter (el => el instanceof PassengerPlane);
     }
 
+
     getMilitaryPlanes() {
-        let militaryPlanesList = [];
-        this.planes.forEach(plane => {
-            if (plane instanceof MilitaryPlane) {
-                militaryPlanesList.push(plane);
-            }
-        });
-        return militaryPlanesList;
+        let planesList = this.planes;
+        return planesList.filter (el => el instanceof MilitaryPlane);
     }
 
 
     getPassengerPlaneWithMaxPassengersCapacity() {
         let passengerPlanes = this.getPassengerPlanes();
-        return passengerPlanes.reduce(function(a, b) {
-         return (a.getPassengersCapacity() > b.getPassengersCapacity() ? a : b);
+        let list = passengerPlanes.sort((a, b) => {
+         return b.getPassengersCapacity() - a.getPassengersCapacity();
         });
+        return list[0];
     }
 
     getTransportMilitaryPlanes() {
        let militaryPlanesArray = this.getMilitaryPlanes();
-       let transportMilitaryPlanes = militaryPlanesArray.filter(el => el.getMilitaryType() == MilitaryType.TRANSPORT);
-       return transportMilitaryPlanes;
+       return militaryPlanesArray.filter(el => el.getMilitaryType() == MilitaryType.TRANSPORT);
     }
 
     getBomberMilitaryPlanes()
     {
         let militaryPlanes = this.getMilitaryPlanes();
-        let bomberMilitaryPlanes = militaryPlanes.filter (el => el.getMilitaryType() == MilitaryType.BOMBER);
-        return bomberMilitaryPlanes;
+        return militaryPlanes.filter (el => el.getMilitaryType() == MilitaryType.BOMBER);
     }
 
     constructor(planes) {
         this.planes = planes;
     }
 
-    getExperimentalPlanes() {
-        let experimentalPlanes = [];
-        this.planes.forEach((plane) => {
-            if (plane instanceof ExperimentalPlane) {
-                experimentalPlanes.push(plane);
-            }
-        });
-        return experimentalPlanes;
+      getExperimentalPlanes() {
+        let planesList = this.planes;
+        return planesList.filter (el => el instanceof ExperimentalPlane);
     }
 
     sortByMaxDistance() {
