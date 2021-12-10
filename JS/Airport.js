@@ -20,10 +20,9 @@ class Airport {
 
     getPassengerPlaneWithMaxPassengersCapacity() {
         let passengerPlanes = this.getPassengerPlanes();
-        let list = passengerPlanes.sort((a, b) => {
+        return passengerPlanes.sort((a, b) => {
          return b.getPassengersCapacity() - a.getPassengersCapacity();
-        });
-        return list[0];
+        })[0];
     }
 
     getTransportMilitaryPlanes() {
