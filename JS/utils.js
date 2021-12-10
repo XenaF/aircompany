@@ -1,8 +1,8 @@
 
-function print(planes) {
+function printObjectToString(planes) {
     return JSON.stringify(planes);
 }
 
 module.exports = {
-    print
+    printObjectToString
 }

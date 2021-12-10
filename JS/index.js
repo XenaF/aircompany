@@ -6,7 +6,7 @@ const MilitaryType = require('./models/MilitaryType');
 const { ExperimentalPlane } = require('./planes/ExperimentalPlane');
 const ExperimentalTypes = require('./models/ExperimentalTypes');
 const ClassificationLevel= require('./models/ClassificationLevel');
-const { print } = require('./utils');
+const { printObjectToString } = require('./utils');
 
 (function createAirport() {
 
@@ -25,18 +25,18 @@ const { print } = require('./utils');
         new MilitaryPlane({model: 'F-15', maxSpeed: 1500, maxFlightDistance: 12000, maxLoadCapacity: 10000, militaryType: MilitaryType.FIGHTER}),
         new MilitaryPlane({model: 'F-22', maxSpeed: 1550, maxFlightDistance: 13000, maxLoadCapacity: 11000, militaryType: MilitaryType.FIGHTER}),
         new MilitaryPlane({model: 'C-130 Hercules', maxSpeed: 650, maxFlightDistance: 5000, maxLoadCapacity: 110000, militaryType: MilitaryType.TRANSPORT}),
-        new ExperimentalPlane({model: "Bell X-14", maxSpeed: 277, maxFlightDistance: 482, maxLoadCapacity: 500, type: ExperimentalTypes.highAltitude, classificationLevel: ClassificationLevel.Secret}),
-        new ExperimentalPlane({model: "Ryan X-13 Vertijet", maxSpeed: 560, maxFlightDistance: 307, maxLoadCapacity: 500, type: ExperimentalTypes.VTOL, classificationLevel: ClassificationLevel.topSecret})
+        new ExperimentalPlane({model: "Bell X-14", maxSpeed: 277, maxFlightDistance: 482, maxLoadCapacity: 500, type: ExperimentalTypes.highAltitude, classificationLevel: ClassificationLevel.SECRET}),
+        new ExperimentalPlane({model: "Ryan X-13 Vertijet", maxSpeed: 560, maxFlightDistance: 307, maxLoadCapacity: 500, type: ExperimentalTypes.VERTICAL_TAKE_OFF_AND_LANDING, classificationLevel: ClassificationLevel.TOP_SECRET})
     ];
    
     let airport = new Airport(planes);
     let militaryAirport = new Airport(airport.getMilitaryPlanes());
     let passengerAirport = new Airport(airport.getPassengerPlanes());
-    console.log(`Military airport sorted by max distance: ${print(militaryAirport.sortByMaxDistance())}`);
-    console.log(`Passenger airport sorted by max speed: ${print(passengerAirport.sortByMaxSpeed())}`);
-    console.log(`Plane with max passenger capacity: ${print(passengerAirport.getPassengerPlaneWithMaxPassengersCapacity())}`);
-    console.log(`list of military planes with transport type: ${print(militaryAirport.getTransportMilitaryPlanes())}`);
-    console.log(`List of Bomber planes In Military Planes: ${print(militaryAirport.getBomberMilitaryPlanes())}`);
+    console.log(`Military airport sorted by max distance: ${printObjectToString(militaryAirport.sortByMaxDistance())}`);
+    console.log(`Passenger airport sorted by max speed: ${printObjectToString(passengerAirport.sortByMaxSpeed())}`);
+    console.log(`Plane with max passenger capacity: ${printObjectToString(passengerAirport.getPassengerPlaneWithMaxPassengersCapacity())}`);
+    console.log(`list of military planes with transport type: ${printObjectToString(militaryAirport.getTransportMilitaryPlanes())}`);
+    console.log(`List of Bomber planes In Military Planes: ${printObjectToString(militaryAirport.getBomberMilitaryPlanes())}`);
     
     module.exports = airport;
 })();

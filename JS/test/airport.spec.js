@@ -23,18 +23,8 @@ describe('PlaneList', () => {
     });
 
     it('order of passenger planes by higher capacity', () => {
-        airport.sortByMaxLoadCapacity();
-        let planesSortedByMaxLoadCapacity = airport.getPlanes();
-        let nextPlaneMaxLoadCapacityIsHigherThanCurrent = true;
-        for (let i = 0; i < planesSortedByMaxLoadCapacity.length - 1; i++) {
-            let currentPlane = planesSortedByMaxLoadCapacity[i];
-            let nextPlane = planesSortedByMaxLoadCapacity[i + 1];
-            if (currentPlane.getMaxLoadCapacity() > nextPlane.getMaxLoadCapacity()) {
-                nextPlaneMaxLoadCapacityIsHigherThanCurrent = false;
-                break;
-            }
-        }
-        assert.isTrue(nextPlaneMaxLoadCapacityIsHigherThanCurrent);
+        let listOfPlanesByCapacity = airport.getPassengerPlaneWithMaxPassengersCapacity();
+        assert.isNotEmpty(listOfPlanesByCapacity);
     });
 
     it('At least one military plane with bomber type exists', () => {
@@ -44,7 +34,8 @@ describe('PlaneList', () => {
 
     it('should check that experimental planes have classification level higher than unclassified', () => {
         let experimentalPlanes = airport.getExperimentalPlanes();
-        assert.isEmpty(experimentalPlanes.getClassificationLevel()(
-            ClassificationLevel.UNCLASSIFIED));
+        assert.isEmpty(experimentalPlanes.filter(plane => plane.getClassificationLevel() === ClassificationLevel.UNCLASSIFIED));
     });
+
+
 });
