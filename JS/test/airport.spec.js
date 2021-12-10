@@ -5,9 +5,9 @@ const { MilitaryPlane } = require('../planes/MilitaryPlane');
 const { PassengerPlane } = require('../planes/PassengerPlane');
 const { ExperimentalPlane } = require('../planes/ExperimentalPlane');
 const { Airport } = require('../Airport');
-const MilitaryType = require('../models/MilitaryType');
-const ExperimentalTypes = require('../models/ExperimentalTypes');
-const ClassificationLevel = require('../models/ClassificationLevel');
+const MILITARY_TYPE = require('../models/MilitaryType');
+const EXPERIMENTAL_TYPES = require('../models/ExperimentalTypes');
+const CLASSIFICATION_LEVEL = require('../models/ClassificationLevel');
 const airport = require('../index');
 
 describe('PlaneList', () => {
@@ -34,7 +34,7 @@ describe('PlaneList', () => {
 
     it('should check that experimental planes have classification level higher than unclassified', () => {
         let experimentalPlanes = airport.getExperimentalPlanes();
-        assert.isEmpty(experimentalPlanes.filter(plane => plane.getClassificationLevel() === ClassificationLevel.UNCLASSIFIED));
+        assert.isEmpty(experimentalPlanes.filter(plane => plane.getClassificationLevel() === CLASSIFICATION_LEVEL.UNCLASSIFIED));
     });
 
 
