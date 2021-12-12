@@ -1,8 +1,8 @@
-const ExperimentalTypes   = {
-    LIFTING_BODY: 'lifting_body',
+const EXPERIMENTAL_TYPES = {
+    LIFTING_BODY: 'LIFTING_BODY',
     HYPERSONIC: 'HYPERSONIC',
     HIGH_ALTITUDE: 'HIGH_ALTITUDE',
-    VTOL: "VTOL"
+    VERTICAL_TAKE_OFF_AND_LANDING: "VERTICAL_TAKE_OFF_AND_LANDING" 
 };
 
-module.exports =  ExperimentalTypes ;
+module.exports = EXPERIMENTAL_TYPES ;
